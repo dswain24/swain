@@ -1,0 +1,23 @@
+on:
+ push:
+   branches:
+     - main  # Trigger on pushes to the 'main' branch
+ workflow_dispatch:  # Allow manual triggering from the Actions tab
+ 
+jobs:
+ build_and_test:
+   runs-on: ubuntu-latest  # Run on the latest version of Ubuntu
+   steps:
+     - name: Checkout Code
+       uses: actions/checkout@v3  # Use the official checkout action
+ 
+     - name: Setup Node.js
+       uses: actions/setup-node@v3  # Use the official Node.js setup action
+       with:
+         node-version: '18'  # Use Node.js version 18
+ 
+     - name: Install Dependencies
+       run: npm install  # Install project dependencies
+ 
+     - name: Run Tests
+       run: npm test  # Run your project's tests
